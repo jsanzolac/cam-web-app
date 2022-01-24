@@ -8,7 +8,12 @@ const cameraView = document.querySelector("#camera--view"),
 // Access the device camera and stream to cameraView
 function cameraStart() {
     navigator.mediaDevices
-        .getUserMedia(constraints)
+        .getUserMedia({
+            audio:false,
+            video: {
+                facingMode: 'environment'
+            }
+        })
         .then(function(stream) {
         track = stream.getTracks()[0];
         cameraView.srcObject = stream;
